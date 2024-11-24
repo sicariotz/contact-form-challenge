@@ -28,5 +28,42 @@ body{
     position: relative;
 }
 
+/*<!--form-title -->*/
+.form-title{
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+    text-align:left;
+    font-weight: bold;
 
+}
 
+/*<!--form-title -->*/
+
+/*<!--form-label -->*/
+.main label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight:bold;
+}
+
+/*<!--input and textarea -->*/
+.main input[type=text],
+.main input[type="email"],
+.main textarea,
+.main button{
+    width: 100%;
+    padding: 15%;
+    margin-bottom: 18px;
+    border:1px solid #333;
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: background-color 0.32 ease; background-color 0.3s ease;
+}
+/*<!--input and textarea -->*/
+.name-container 
+{
+    display: flex;
+    gap =15px;
+    margin-bottom: 18px;
+}
