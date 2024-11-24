@@ -18,26 +18,53 @@
 <div class="main">
   Contact Us
 </div>
+<!----form ---->
 <div id ="Contactform">
+
+   <!----first name ---->
   <div class="name-container">
     <div>
       <label for="fname">First Name*</label>
       <input type="text" id="fname" name="fname" size="20">
     </div>
+
+     <!----last name ---->
     <div>
       <label for="lname">Last Name*</label>
       <input type="text" id="lname" name="lname" size="20">
     </div>
+  </div>
+   <!----email---->
+  <label for="email">Email Address*</label>
+  <input type="email" id="email" name="email">
+  <label for="Query-type">Query Type*</label>
 
+  <!----radio-container---->
+  <div class="radio-container">
+    <label ><input type="radio" name="option" value="general_equiry"> General Equiry</label>
+    <label ><input type="radio" name="option" value="support-request">Support Request</label>
   </div>
 
+  <!----textarea---->
+  <div class="textarea">
+    <label for="textarea">Message*</label>
+    <textarea name="message" id="textarea" row="4"></textarea>
+  </div>
+  <!----consent ---->
+<div class="consent">
+  <label>
+    <input type="checkbox" name="consent">I consent to being conctacted by the Team.
+  </label>
+</div>
+<!----Button ---->
+<div class="button-wrapper" sytle="text-align:center;">
+  <button class="submit">Submit</button>
+</div>
 </div>
 
-  
-  
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Sicario From Tanzania</a>.
   </div>
 </body>
 </html>
