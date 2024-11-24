@@ -1,0 +1,19 @@
+/*<!--body style--->*/
+html body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*<!--body main--->*/
+body{
+    background-color: #9fe2bf;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height:100vh;
+    padding: 20px;
+}
+
+
