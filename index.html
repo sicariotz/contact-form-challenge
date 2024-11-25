@@ -7,69 +7,398 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
   <title>Frontend Mentor | Contact form</title>
-<link rel="stylesheet" href="./style.css">
+
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
 </head>
 <body>
+    <title>Contact Form</title>
+    <style>
+        /* General reset for padding and margin */
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body styling */
+        body {
+            background-color: #9FE2BF;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* Form styling */
+        .main {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        /* Form title inside form aligned left */
+        .form-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        /* Label styling */
+        .main label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* Input and textarea styling */
+        .main input[type="text"],
+        .main input[type="email"],
+        .main textarea,
+        .main button {
+            width: 100%; /* Ensure all input fields and button take full width */
+            padding: 15px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+          
+        }
+
+        /* Fix size of First Name and Last Name fields to size="20" */
+        .name-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 18px; 
+        }
+
+        .name-container input {
+            width: 20ch; /* Fixed size based on 20 characters width */
+            flex:1;
+            min-width: 300px;
+            padding: 12px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            border: 1px solid #ccc; 
+        }
+
+      /* General styling for the container */
+      .radio-container {
+    display: flex;
+    gap: 15px; /* Space between the options */
+        }
+
+    /* Style each label */
+    .radio-container label {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: white;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    min-width: 258px;
+    }
+
+      /* Style the input (radio button) */
+    .radio-container input[type="radio"] {
+    margin-right: 10px; /* Space between radio button and text */
+    accent-color: #4CAF50; /* Customize the radio button color */
+    }
+
+    /* Highlight the selected option */
+    .radio-container input[type="radio"]:checked + span {
+    background-color: #d9f0e4; /* Light green background */
+    border-color: #66bb6a; /* Green border */
+
+    }
+
+    /* Add hover effect for labels */
+    .radio-container label:hover {
+    background-color: #f9f9f9; /* Light gray on hover */
+    border-color: #bbb;
+    }
+
+
+
+    .textarea {
+            margin-bottom: 20px;
+        }
+
+        .consent {
+            margin-bottom: 20px;
+        }
+
+        /* Button styling */
+        .main button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .main button:hover {
+            background-color: #45a049;
+        }
+
+        /* Error message styles */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Success message pop-up style */
+        .success-message {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            font-size: 18px;
+            z-index: 2; /* Ensure it's above the form */
+        }
+
+        .success-message .icon {
+            margin-right: 10px;
+            color: #4CAF50;
+        }
+
+        .success-message .icon::before {
+            content: "\2714"; /* Unicode for checkmark */
+            font-size: 30px;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            bottom: 0;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: hsl(228, 45%, 44%);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* CSS class for valid fields with green background */
+        .valid {
+            background-color: rgba(144, 238, 144, 0.5); /* Light green transparent shade */
+        }
+
+        /* Hover and focus states for input, textarea, and button */
+        .main input[type="text"]:hover,
+        .main input[type="email"]:hover,
+        .main textarea:hover,
+        .main button:hover,
+        .main input[type="text"]:focus,
+        .main input[type="email"]:focus,
+        .main textarea:focus,
+        .main button:focus {
+            border-color: #66bb6a; /* Light green border on hover and focus */
+            outline: none; /* Remove default outline */
+        }
+
+        /* Media queries for smaller screens (mobile) */
+        @media (max-width: 600px) {
+            .name-container input {
+                width: 100%; /* Make fields full-width on mobile devices */
+            }
+
+            .main {
+                padding: 20px;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
 <div class="main">
-  Contact Us
-</div>
-<!----form ---->
-<div id ="Contactform">
-
-   <!----first name ---->
-  <div class="name-container">
-    <div>
-      <label for="fname">First Name*</label>
-      <input type="text" id="fname" name="fname" size="20">
+    <div class="form-title">
+        Contact Us
     </div>
+    <form id="contactForm">
+        <div class="name-container">
+            <div>
+                <label for="fname">First Name*</label>
+                <input type="text" id="fname" name="fname" size="20">
+                <span class="error-message" id="fname-error"></span> <!-- Error message -->
+            </div>
+            <div>
+                <label for="lname">Last Name*</label>
+                <input type="text" id="lname" name="lname" size="20">
+                <span class="error-message" id="lname-error"></span> <!-- Error message -->
+            </div>
+        </div>
 
-     <!----last name ---->
-    <div>
-      <label for="lname">Last Name*</label>
-      <input type="text" id="lname" name="lname" size="20">
-    </div>
-  </div>
-   <!----email---->
-  <label for="email">Email Address*</label>
-  <input type="email" id="email" name="email">
-  <label for="Query-type">Query Type*</label>
+        <label for="email">Email Address*</label>
+        <input type="email" id="email" name="email">
+        <span class="error-message" id="email-error"></span> <!-- Error message -->
 
-  <!----radio-container---->
-  <div class="radio-container">
-    <label ><input type="radio" name="option" value="general_equiry"> General Equiry</label>
-    <label ><input type="radio" name="option" value="support-request">Support Request</label>
-  </div>
+        <label for="query-type">Query Type*</label>
+        <div class="radio-container">
+            <label>
+                <input type="radio" name="option" value="general_enquiry"> General Enquiry
+            </label>
+            <label>
+                <input type="radio" name="option" value="support_request"> Support Request
+            </label>
+        </div>
+        <span class="error-message" id="query-type-error"></span> <!-- Error message -->
 
-  <!----textarea---->
-  <div class="textarea">
-    <label for="textarea">Message*</label>
-    <textarea name="message" id="textarea" row="4"></textarea>
-  </div>
-  <!----consent ---->
-<div class="consent">
-  <label>
-    <input type="checkbox" name="consent">I consent to being conctacted by the Team.
-  </label>
-</div>
-<!----Button ---->
-<div class="button-wrapper" sytle="text-align:center;">
-  <button class="submit">Submit</button>
-</div>
-</form>
-</div>
-<!----sucess-message ---->
-<div class="sucess-message" id ="sucess-message">
-  <span class="icon"></span>Message Sent!<br>
-  Thanks for completing the form. We'll be in touch soon!
-</div>
-<!----Footer ---->
+        <div class="textarea">
+            <label for="textarea">Message*</label>
+            <textarea name="message" id="textarea" rows="4"></textarea>
+            <span class="error-message" id="message-error"></span> <!-- Error message -->
+        </div>
 
+        <div class="consent">
+            <label>
+                <input type="checkbox" name="consent" id="consent"> I consent to being contacted by the team
+            </label>
+            <span class="error-message" id="consent-error"></span> <!-- Error message -->
+        </div>
+
+        <!-- Submit button centered -->
+        <div class="button-wrapper" style="text-align: center;">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<!-- Success Message Pop-up -->
+<div class="success-message" id="success-message">
+    <span class="icon"></span> Message Sent!<br>
+    Thanks for completing the form. We'll be in touch soon!
+</div>
+<script>
+    // Function to validate the form before submission
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission to check validation
+
+        // Reset all error messages and remove valid class
+        document.getElementById("fname-error").textContent = '';
+        document.getElementById("lname-error").textContent = '';
+        document.getElementById("email-error").textContent = '';
+        document.getElementById("query-type-error").textContent = '';
+        document.getElementById("message-error").textContent = '';
+        document.getElementById("consent-error").textContent = '';
+
+        // Get form values
+        let fname = document.getElementById("fname").value;
+        let lname = document.getElementById("lname").value;
+        let email = document.getElementById("email").value;
+        let queryType = document.querySelector('input[name="option"]:checked');
+        let message = document.getElementById("textarea").value;
+        let consent = document.getElementById("consent").checked;
+        
+        let valid = true;
+
+        // Validate First Name
+        if (!fname) {
+            document.getElementById("fname-error").textContent = "This field is required";
+            valid = false;
+        } else {
+            document.getElementById("fname").classList.add("valid"); // Add green background
+        }
+
+        // Validate Last Name
+        if (!lname) {
+            document.getElementById("lname-error").textContent = "This field is required";
+            valid = false;
+        } else {
+            document.getElementById("lname").classList.add("valid"); // Add green background
+        }
+
+        // Validate Email
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!email) {
+            document.getElementById("email-error").textContent = "This field is required";
+            valid = false;
+        } else if (!emailPattern.test(email)) {
+            document.getElementById("email-error").textContent = "Please enter a valid email address";
+            valid = false;
+        } else {
+            document.getElementById("email").classList.add("valid"); // Add green background
+        }
+
+        // Validate Query Type
+        if (!queryType) {
+            document.getElementById("query-type-error").textContent = "Please select a query type";
+            valid = false;
+        }
+
+        // Validate Message
+        if (!message) {
+            document.getElementById("message-error").textContent = "This field is required";
+            valid = false;
+        } else {
+            document.getElementById("textarea").classList.add("valid"); // Add green background
+        }
+
+        // Validate Consent
+        if (!consent) {
+            document.getElementById("consent-error").textContent = "This field is required";
+            valid = false;
+        }
+
+        // If form is valid, display success message and reset the form
+        if (valid) {
+            document.getElementById("success-message").style.display = "block";
+            setTimeout(function() {
+                document.getElementById("success-message").style.display = "none";
+                document.getElementById("contactForm").reset();
+            }, 3000);
+        }
+    });
+</script>
+<!-- Footer -->
+<footer>
   <div class="attribution">
-    <footer>
-      <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Sicario From Tanzania</a>.
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+      Coded by <a href="#">Sicario @Hakuna Matata Tech</a>.
   </div>
+</footer>
 </body>
 </html>
